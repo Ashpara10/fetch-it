@@ -13,7 +13,11 @@ function isValidUrl(url: string): boolean {
 
 app.use(cors());
 
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
+  res.status(201).json({ health: "ok" });
+});
+
+app.get("/fetch", async (req, res) => {
   const url = req.query.url as string;
   const isValid = isValidUrl(url);
   if (!isValid) {
